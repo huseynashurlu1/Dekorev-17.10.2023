@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import apiUrl from '../../../utils/api';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -13,9 +13,9 @@ const ProductDetails = () => {
   useEffect(() => {
     const getItem = async () => {
       try {
-        const response = await axios.get(`http://207.154.192.155:5000/api/product/all-products/${id}`);
+        const response = await axios.get(`${apiUrl.productApi.getProducts}/${id}`);
         setData(response.data);
-        setUpdatedData(response.data); // Başlangıçta verileri güncellenmiş verilere ayarla
+        setUpdatedData(response.data); 
       } catch (error) {
         console.error(error);
       }
@@ -39,7 +39,7 @@ const ProductDetails = () => {
     e.preventDefault();
 
     try {
-      await axios.put(`http://207.154.192.155:5000/api/product/${id}`, updatedData);
+      await axios.put(`${apiUrl.productApi.getProducts}/${id}`, updatedData);
     } catch (error) {
       console.error(error);
     }

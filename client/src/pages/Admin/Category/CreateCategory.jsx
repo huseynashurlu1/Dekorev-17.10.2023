@@ -1,32 +1,40 @@
-import React, { useState ,useEffect } from 'react'
+import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import apiUrl from '../../../utils/api';
 
 
 const CreateCategory = () => {
     const [item, setItem] = useState({
-        name: ''
+        name: '',
+        image: null
     })
 
-    const handleSubmit = async () => {
-        console.log(item);
+    const handleImageChange = (e) => {
+        const imageFile = e.target.files[0];
+        setItem({ ...item, image: imageFile });
+      };
+    
+      const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
-            const response = await axios.post('http://207.154.192.155:5000/api/category/add', item)
-            toast.success('Kateqoriya əlavə olundu', {
-                            position: "bottom-right",
-                            autoClose: 2000,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            progress: undefined,
-                            theme: "light",
-                        });
+          const formData = new FormData();
+          formData.append('name', item.name);
+          formData.append('image', item.image);
+          
+          await axios.post(`${apiUrl.categoryApi.categoryURL}/add`, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          });
+    
+          alert('Kateqoriya əlavə edildi');
         } catch (error) {
-            console.log('Kateqoriya əlavə olunan zaman xəta baş verdi:' , error);
+          console.error('Xəta:', error);
         }
-    }
+      };
     
   return (
     <div className="container">
@@ -36,6 +44,10 @@ const CreateCategory = () => {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Kateqoriya adı</Form.Label>
                 <Form.Control onChange={(e) => setItem({ ...item, name: e.target.value })} type="text"/>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label>Kateqoriya şəkli</Form.Label>
+                <Form.Control  onChange={handleImageChange} type="file"/>
             </Form.Group>
              <button onClick={handleSubmit} className='btn btn-success w-100 mt-4'>Əlavə et</button>
         </div>

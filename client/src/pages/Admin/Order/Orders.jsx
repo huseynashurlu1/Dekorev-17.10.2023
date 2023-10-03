@@ -3,13 +3,14 @@ import React, { useState, useEffect } from 'react'
 import { BsTrash3 } from 'react-icons/bs'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import apiUrl from '../../../utils/api';
 
 const Orders = () => {
     const [data, setData] = useState([])
 
   useEffect(() => {
     const getItems = async () => {
-      await axios.get(`http://207.154.192.155:5000/api/order/all-orders`)
+      await axios.get(apiUrl.orderApi.getOrders)
       .then(res => setData(res.data))
       .catch(err => console.log(err))
     }
@@ -20,7 +21,7 @@ const Orders = () => {
 
   const DeleteHandler = async (id) => {
     try {
-        const response = await axios.delete(`http://207.154.192.155:5000/api/order/${id}`)
+        const response = await axios.delete(`http://localhost:5000/api/order/${id}`)
         setData(prevData => prevData.filter(item => item._id !== id));
         toast.error('Sifariş silindi', {
             position: "bottom-right",

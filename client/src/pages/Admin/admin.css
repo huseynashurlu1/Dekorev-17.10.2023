@@ -1,0 +1,101 @@
+.appSidebar{ 
+    padding: 20px 10px;
+    height: 100vh;
+    background-color: #3C4B64;
+}
+
+.accordion{
+    margin-bottom: 20px;
+}
+
+.accordion button{
+    background: #536686;
+    color: #fff;
+}
+
+.accordion a{
+    display: block;
+    color: #333;
+    font-weight: Regular;
+    margin-bottom: 10px;
+}
+
+
+form label,input, select{
+    font-family: Regular;
+}
+
+
+.admin-pr-top input{
+    border: 1px solid #c0bebe;
+    font-family: 'Regular';
+    padding: 4px 2px;
+    width: 30%;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+.appSidebar button{
+    border: 1px solid #c0bebe;
+    background: #536686;
+    color: #fff;
+    width: 100%;
+    border-radius: 7px;
+    padding: 10px 0;
+    font-family: 'Regular';
+    font-size: 14px;
+}
+
+.st-box {
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.st-box:nth-of-type(1) {
+    background-color: #3C4B64;
+}
+
+.st-box:nth-of-type(2) {
+    background-color: #2A86D4;
+}
+
+.st-box:nth-child(3) {
+    background-color: #F79C0D;
+}
+
+.st-box:nth-child(4) {
+    background-color: #DB3C3C;
+}
+
+.st-box h4{
+    color: #fff;
+    font-family: Regular;
+    border-bottom: 1px solid #e7e7e744;
+    padding-bottom: 9px;
+}
+
+.st-box p{
+    font-family: Bold;
+    color: #fff;
+    padding-top: 9px;
+    font-size: 23px;
+}
+
+.main-page-link {
+    border: 1px solid #c0bebe;
+    background: #536686;
+    color: #fff;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    padding: 10px 0;
+    font-family: 'Regular';
+    font-size: 14px;
+}
+
+table tr, table {
+    text-align: center;
+    font-size: 13px;
+}

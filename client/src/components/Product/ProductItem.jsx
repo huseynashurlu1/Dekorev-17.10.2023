@@ -1,30 +1,33 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { HiOutlineShoppingCart } from 'react-icons/hi'
+import './product.css'
 
 const ProductItem = (props) => {
-  
-    const { _id, image, name, price,discount, discountedPrice} = props.item
+  const { _id, name,price, isVIP,images } = props.data;
+//   const { category } = props.data.categoryId.name
+
   return (
-    <div key={_id} className={`${props.col} col-6`}>
-                          <Link to={`/details/${_id}`}>
+    <div className="col-lg-3 col-6">
+                        <Link to={`/details/${_id}`}>
                             <div className="item-box">
-                              <div className="item-image">
-                              {
-                                discount && <span>Endirimli</span>
-                              }
-                                <img src={`http://207.154.192.155:5000/uploads/${image}`} alt="" />
-                              </div>
-                              <div className="item-content">
-                                <h5>{name}</h5>
-                                {
-                                    discount ? <p><del>{price} AZN</del> {discountedPrice} AZN</p> : <p>{price} AZN</p>
-                                }
-                                <button><HiOutlineShoppingCart /> Səbətə at</button>
-                              </div>
+                                <div className="box-top">
+                                    {isVIP && <span>VIP</span>}
+                                    <img src={`http://localhost:5000/uploads/product/${images[0].url}`} alt="" />
+                                </div>
+                                <div className="box-bottom">
+                                    <span></span>
+                                    <h6>{name}</h6>
+                                    <div className="bb-price-cart d-flex justify-content-between align-items-center">
+                                        <span className="price">{price} <span className="manat">₼</span></span>
+                                        <button className="add-basket-btn">
+                                            <i className="fa-solid fa-cart-shopping"></i>
+                                            <span>Səbətə at</span>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                          </Link>
-    </div>
+                        </Link>
+                    </div>
   )
 }
 

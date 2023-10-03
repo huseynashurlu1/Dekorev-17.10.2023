@@ -1,6 +1,5 @@
 const mongoose = require('mongoose'); 
 
-
 var productSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -8,45 +7,70 @@ var productSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: true
+        required: true,
     },
-    price : {
+    price: {
         type: Number,
         required: true
     },
-    image : {
+    phone: {
         type: String,
         required: true
     },
-    shipping : {
+    images: [
+        {
+            url: {
+                type: String,
+                required: true,
+            },
+            isMain: {
+                type: Boolean,
+                default: false,
+            },
+        },
+    ],
+    isDiscounted: {
         type: Boolean,
-        required: true
+        required: true 
     },
-    discount: {
-        type: Boolean,
-        default: false,
-    },
-    discountedPrice : {
+    discountedPrice: {
         type: Number,
-        default: 0,
+        required: true 
+    },
+    isNew: {
+        type: Boolean,
+        required: true 
+    },
+    isVIP: {
+        type: Boolean,
+        required: true        
+    },
+   
+    hasShipping: {
+        type: Boolean,
+        required: true 
+    },
+    city: {
+        type: String,
+        required: true 
     },
     viewCount: {
         type: Number,
-        default: 0
+        default: 0, 
+    },
+    createDate:{
+        type: String, 
+        required:true,
+        default: () => new Date().toISOString().substring(0, 10)
     },
     categoryId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category',
         required:true
     },
-    subCategoryId: {
+    storeId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Subcategory',
-        required:true
-    },
-    brandId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Brand',
+        ref: 'Store',
         required:true
     },
 });

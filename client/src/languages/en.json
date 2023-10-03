@@ -1,16 +1,12 @@
 {
     
-    "Ölkənin ən bol çeşidli mağazası": "The most diverse store in the country",
-    "Dil seçimi": "Language",
-    "Ən çox baxılanlar": "Most Viewed",
-    "Endirimli məhsullar": "Discount products",
-    "Səbətə at": "Add to cart",
-    "Keçidlər": "Links",
-    "Bizimlə əlaqə": "Contact us",
-    "Şəhər": "City",
-    "Çatdırılma": "Shipping",
-    "Sifariş et": "Order",
-    "Səbətə at": "Add to cart",
-    "Oxşar məhsullar": "Similar products",
-    "Baxış sayı": "Views"
-  }
+  "Haqqımızda": "About us",
+  "Əlaqə": "Contact",
+  "Dil seçimi": "Language",
+  "Müqayisə": "COMPARE",
+  "Səbətim": "BASKET",
+  "Profilim": "PROFILE",
+  "Xidmətlərimiz": "Services",
+  "Kateqoriyalar": "Categories",
+  "Profil": "Profile"
+}

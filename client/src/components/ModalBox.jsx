@@ -1,10 +1,9 @@
-import axios from 'axios';
-import React from 'react'
-import { useState } from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
 import { GrClose } from 'react-icons/gr'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import apiUrl from '../utils/api';
 
 const ModalBox = (props) => {
     const id = props.id;
@@ -17,7 +16,7 @@ const ModalBox = (props) => {
 
     const orderHandler = async () => {
         try {
-            await axios.post('http://207.154.192.155:5000/api/order/add', order)
+            await axios.post(apiUrl.orderApi.addOrder, order)
             toast.success('Sifariş göndərildi', {
                 position: "bottom-right",
                 autoClose: 2000,
@@ -37,7 +36,7 @@ const ModalBox = (props) => {
                 <div className="modal-main">
                     <div className="modal-header">
                     <h4>Şəxsi məlumatlar</h4>
-                    <GrClose/>
+                    <GrClose onClick={() => window.location.reload()}/>
                     </div>
                     <div className="modal-body">
                             <div className='form-group mt-3'>

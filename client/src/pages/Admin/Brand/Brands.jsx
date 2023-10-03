@@ -1,17 +1,16 @@
-import React from 'react'
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BsTrash3 } from 'react-icons/bs'
-import { AiOutlineEdit } from 'react-icons/ai'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import apiUrl from '../../../utils/api';
 
 const Brands = () => {
     const [data, setData] = useState([])
 
     useEffect(() => {
       const getItems = async () => {
-        await axios.get(`http://207.154.192.155:5000/api/brand/all-brands`)
+        await axios.get(apiUrl.brandApi.getBrands)
         .then(res => setData(res.data))
         .catch(err => console.log(err))
       }
@@ -21,7 +20,7 @@ const Brands = () => {
 
     const DeleteHandler = async (id) => {
         try {
-            const response = await axios.delete(`http://207.154.192.155:5000/api/brand/${id}`)
+            const response = await axios.delete(`${apiUrl.brandApi.deleteBrand}/${id}`)
             setData(prevData => prevData.filter(item => item._id !== id));
             toast.error('Brend silindi', {
                 position: "bottom-right",

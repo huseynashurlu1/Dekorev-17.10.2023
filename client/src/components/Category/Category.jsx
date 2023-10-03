@@ -1,34 +1,38 @@
-import { useEffect, useState } from "react"
-import axios from 'axios'
+import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import './category.css'
-import { Link } from "react-router-dom";
+import axios from 'axios'
+import apiUrl from '../../utils/api'
 
 const Category = () => {
-    const [data, setData] = useState([]);
+  const [data, setData] = useState([])
 
-    useEffect(() => {
-        const getDatas = async () => {
-            axios.get('http://207.154.192.155:5000/api/category/all-categories')
-            .then(res => setData(res.data.categories))
-            .catch(err => console.log(err))
-        }
-
-        getDatas()
-    }, [])
+  useEffect(() => {
+    const getAllCategories = async () => {
+      await axios.get(`${apiUrl.categoryApi.categoryURL}/all`)
+      .then(res => setData(res.data))
+      .catch(err => console.log(err))
+    }
+  
+    getAllCategories();
+  }, [])
 
   return (
     <div className="category-list">
-        <ul>
+        <div className="container">
+          <ul>
             {
-                data && data.map(item => {
-                    return(
-                        <li key={item._id}>
-                            <Link to={`/category/${item._id}`}>{item.name}</Link>
-                        </li>
-                    )
-                })
+              data && data.map(item => {
+                return(
+                  <li key={item._id}>
+                    <img src={`http://localhost:5000/uploads/category/${item.image}`} alt={`${item.name} şəkli`} />
+                    <Link to={`/category/${item._id}`}>{item.name}</Link>
+                  </li>
+                )
+              })
             }
-        </ul>
+          </ul>
+        </div>
     </div>
   )
 }

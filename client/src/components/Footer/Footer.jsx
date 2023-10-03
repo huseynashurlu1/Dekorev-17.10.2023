@@ -1,46 +1,78 @@
 import { Link } from 'react-router-dom'
 import './footer.css'
-import { AiOutlineInstagram, AiFillFacebook } from 'react-icons/ai'
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage } from 'react-intl'
 
 const Footer = () => {
   return (
     <footer>
-      <div className="container">
-        <div className="footer-top">
-          <div className="row gy-4">
-            <div className="col-lg-3 f-logo">
-              <Link to='/'>Flamingo</Link>
-              <p>Ən çox bol çeşid</p>
+        <div className="container">
+            <div className="row g-4">
+                <div className="col-lg-3 col-12">
+                    <div className="logo">
+                        <Link to='/'>Dekorev</Link>
+                      </div>
+                    <a href="tel:0502656463">
+                        <i className="fa-solid fa-phone"></i>
+                        <span>050 265 64 63</span>
+                    </a>
+                    <a href="mailto:info@dekorev.az">
+                        <i className="fa-solid fa-at"></i>
+                        <span>info@dekorev.az</span>
+                    </a>
+                </div>
+                <div className="col-lg-3 col-12">
+                    <h5>
+                    <FormattedMessage id='Xidmətlərimiz' defaultMessage='Xidmətlərimiz'/>
+                    </h5>
+                    <ul>
+                        <li>
+                            <a href="">Daxil olmaq</a>
+                        </li>
+                        <li>
+                            <a href="">Mağaza açmaq</a>
+                        </li>
+                    </ul>
+                </div>
+                <div className="col-lg-3 col-12">
+                    <h5>
+                        <FormattedMessage id='Kateqoriyalar' defaultMessage='Kateqoriyalar'/>
+                    </h5>
+                    <ul>
+                        <li>
+                            <a href="">Pərdə</a>
+                        </li>
+                        <li>
+                            <a href="">Pəncərə</a>
+                        </li>
+                        <li>
+                            <a href="">İşıqlandırma</a>
+                        </li>
+                        <li>
+                            <a href="">Parket</a>
+                        </li>
+                    </ul>
+                </div>
+                <div className="col-lg-3 col-12">
+                    <h5>
+                        <FormattedMessage id='Profil' defaultMessage='Profil'/>
+                    </h5>
+                    <ul>
+                        <li>
+                            <a href="">Daxil olmaq</a>
+                        </li>
+                        <li>
+                            <a href="">Qeydiyyat</a>
+                        </li>
+                        <li>
+                            <a href="">Səbət</a>
+                        </li>
+                        <li>
+                            <a href="">Sifarişlərim</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div className="col-lg-3 f-box">
-              <h5>Kateqoriyalar</h5>
-              <Link>Qazan</Link>
-              <Link>Stəkan</Link>
-              <Link>Yuyucu vasitələr</Link>
-            </div>
-            <div className="col-lg-3 f-box">
-
-              <h5>
-                <FormattedMessage id="Keçidlər" defaultMessage="Keçidlər" />
-              </h5>
-              <Link to='/aggrement'>İstifadəçi razılaşması</Link>
-              <Link>Xidmətlər</Link>
-              <Link>FAQ</Link>
-            </div>
-            <div className="col-lg-3 social">
-                <h5>
-                 <FormattedMessage id="Bizimlə əlaqə" defaultMessage="Bizimlə əlaqə" />
-                </h5>
-                <a target='_blank' href="https://www.instagram.com/_eviniz/"><AiOutlineInstagram /></a>
-            </div>
-          </div>
         </div>
-        <div className="footer-bottom">
-          <p >© {new Date().getFullYear()}. All rights reserved</p>
-        </div>
-      </div>
-     
     </footer>
   )
 }

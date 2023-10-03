@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import apiUrl from '../../../utils/api';
 
 
 
@@ -24,13 +25,13 @@ const CreateItem = () => {
 
   useEffect(() => {
     async function getCategories() {
-      const response = await axios.get('http://207.154.192.155:5000/api/category/all-categories');
+      const response = await axios.get(apiUrl.categoryApi.getCategories);
       setCategories(response.data.categories);
       setSubCategories(response.data.sub_categories);
     }
 
     async function getBrands() {
-      const response = await axios.get('http://207.154.192.155:5000/api/brand/all-brands');
+      const response = await axios.get(apiUrl.brandApi.getBrands);
       setBrands(response.data);
     }
 
@@ -62,7 +63,7 @@ const CreateItem = () => {
 
       console.log(formData);
 
-      await axios.post('http://207.154.192.155:5000/api/product/add', formData, {
+      await axios.post(apiUrl.productApi.addProduct, formData, {
         headers: {
           'Content-Type': 'multipart/form-data', // Set the content type to multipart/form-data
         },

@@ -1,58 +1,37 @@
+import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import '../assets/css/details.css'
-import { HiOutlineShoppingCart } from 'react-icons/hi'
-import { MdPayment } from 'react-icons/md'
-import { ToastContainer, toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
-import { addItem } from '../store/cartSlice';
-import 'react-toastify/dist/ReactToastify.css';
-import ModalBox from '../components/ModalBox'
-import { FormattedMessage } from 'react-intl';
-import { BsEye } from 'react-icons/bs'
+import apiUrl from '../utils/api'
 import Spinner from '../components/Spinner'
+import { useDispatch } from 'react-redux'
+import { addItem } from '../store/cartSlice'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const DetailPage = () => {
-    const { id } = useParams()
-    const [data, setData] = useState()
-    const [sameItems, setSameItems] = useState([])
-    const dispatch = useDispatch();
-    const [active, setActive] = useState(false);
+  const { id } = useParams()
+  const [item, setItem] = useState()
+  const dispatch = useDispatch();
 
-    
-    const handleShow = () => {
-        setActive(true)
+
+
+  useEffect(() => {
+    const getItem = async () => {
+        try {
+            const res = await axios.get(`${apiUrl.productApi.productURL}/details/${id}`)
+            setItem(res.data)
+            await axios.put(`${apiUrl.productApi.productURL}/increase/${id}`)
+        } catch (error) {
+            console.log(error)
+        }
     }
-
-    useEffect(() => {
-        const getItem = async () => {
-            try {
-                const res = await axios.get(`http://207.154.192.155:5000/api/product/all-products/${id}`)
-                setData(res.data)
-                getSameItems(res.data.categoryId)
-
-                await axios.put(`http://207.154.192.155:5000/api/product/${id}/increase-view`);    
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-        const getSameItems = async (id) => {
-            await axios.get(`http://207.154.192.155:5000/api/product/all-products/category/${id}`)
-            .then(res => {
-                setSameItems(res.data)
-            })
-            .catch(err => console.log(err))
-        }
-    
-        getItem()
-    }, [])
-
+      getItem()
+  }, [])
 
   const handleAddToCart = () => {
-    dispatch(addItem({ ...data,count: 1 }));
+    dispatch(addItem({ ...item,count: 1 }));
     toast.success('Məhsul səbətə əlavə olundu', {
         position: "bottom-right",
         autoClose: 1500,
@@ -65,80 +44,76 @@ const DetailPage = () => {
         });
   };
 
-    
   return (
-    <>
+      <section id="Product-details">
         {
-            data ? <section id='Details'>
-            <div className="container">
-                <div className="row justify-content-between">
-                    <div className="col-lg-5">
-                        <div className="item-photo">
-                            {
-                                data.discount && <span>Endirimli</span>
-                            }
-                            <img src={`http://207.154.192.155:5000/uploads/${data.image}`} alt="" />
-                        </div>
-                    </div>
-                    <div className="col-lg-6">
-                        <div className="item-desc">
-                            <h4>{data.name}</h4>
-                            <p>{data.description}</p>
-                            <ul>
-                                <li><FormattedMessage id='Şəhər' defaultMessage='Şəhər'/> : <span>Bakı</span></li>
-                                <li><FormattedMessage id='Çatdırılma' defaultMessage='Çatdırılma'/>: <span>{data.shipping ? 'Var' : 'Yoxdur'}</span></li>
-                            </ul>
-                            {
-                                data.discount ? <p className='item-price'><del className='me-4'>{data.price} AZN</del>{data.discountedPrice} AZN</p> : 
-                                <p className='item-price'>{data.price} AZN</p>
-                            }
+          item ? <div className="container">
+          <div className="pr-box">
+              <div className="row">
+                  <div className="col-lg-3">
+                      <div className="pr-img">
+                          <img id="prod_img" src={`http://localhost:5000/uploads/product/${item.images[0].url}`} alt="" />
+                      </div>
+                  </div>
+                  <div className="col-lg-6">
+                      <div className="pr-details">
+                          <span className="pr-cat">{item.categoryId.name}</span>
+                          <h4 id="prod_name" className="pr-name">{item.name}</h4>
+                          <hr />
+                          <p className="shipping">Çatdırılma: <span>{item.isShipping ? 'Var' : 'Yoxdur'}</span></p>
+                          <p className="new-old">Yeni: <span>{item.isNew ? 'Bəli' : 'Xeyr'}</span></p>
+                          <p className="city">Şəhər: <span>{item.city}</span></p>
 
-                            <p className='view-count'>
-                                <BsEye /> <span><FormattedMessage id='Baxış sayı' defaultMessage='Baxış sayı' /></span>:<span className='ms-2'>{data.viewCount}</span>
-                            </p>
-                            <div className="add-to-cart">
-                                <button onClick={handleShow}><MdPayment /> <FormattedMessage id='Sifariş et' defaultMessage='Sifariş et'/></button>
-                                <button onClick={handleAddToCart}><HiOutlineShoppingCart /> <FormattedMessage id='Səbətə at' defaultMessage='Səbətə at'/></button>
-                            </div>
-                        </div>
-                    </div>
-                    <ToastContainer />
-                    <ModalBox id={id} data={active}/>
-                </div>
-
-                <div className="familiars mt-5">
-                        <h3>
-                            <FormattedMessage id='Oxşar məhsullar' defaultMessage='Oxşar məhsullar' />
-                        </h3>
-                    <div className="row">
-                        {
-                            sameItems && sameItems.slice(0,4).map(item => {
-                                return(
-                                    <div key={item._id} className="col-lg-3 col-6">
-                                        <Link to={`/details/${item._id}`}>
-                                            <div className="item-box">
-                                            <div className="item-image">
-                                                {item.discount && <span>Endirimli</span>}
-                                                <img className='img-fluid' src={`http://207.154.192.155:5000/uploads/${item.image}`} alt="" />
-                                            </div>
-                                            <div className="item-content">
-                                                <h5>{item.name}</h5>
-                                                <p>{item.price} AZN</p>
-                                                <button><HiOutlineShoppingCart /> Səbətə at</button>
-                                            </div>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                </div>
-            </div>
-        </section> : <Spinner />
+                          <form action="">
+                              <button type="submit" style={{backgroundColor: "#04913a"}}>
+                                  İrəli çək
+                              </button>
+                              <button type="submit" style={{backgroundColor: "#eeb90d"}}>
+                                  VIP et
+                              </button>
+                              <button type="submit" style={{backgroundColor: "#ee5833"}}>
+                                  Premium et
+                              </button>
+                          </form>
+                      </div>
+                  </div>
+                  <div className="col-lg-3">
+                      <div className="cust-details">
+                          <div className="price-sec">
+                              <span className="pr-price"><span id="prod_price">{item.price}</span> <span>₼</span></span>
+                          </div>
+                          <ul>
+                              <li>
+                                  <span>Elanın nömrəsi: <span id="prod_id">481290</span></span>
+                              </li>
+                              <li>
+                                  <span>Yüklənmə tarixi: <span>{item.createDate}</span></span>
+                              </li>
+                              <li>
+                                  <span>Baxış sayı: <span>{item.viewCount}</span></span>
+                              </li>
+                              <li>
+                                  <span>Əlaqə: <span style={{color: "#333e48"}}>{item.phone}</span></span>
+                              </li>
+                              <li>
+                                  <span>Mağaza: <a href="store-details.html" style={{color: "#333e48",fontWeight: "bold"}}>Collezine Italiano</a></span>
+                              </li>
+                          </ul>
+                          <div className="shop-cart-btn">
+                              <button onClick={handleAddToCart} className="add-to-cart-button">Səbətə at</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div className="tab-details">
+                  <p>{item.description}</p>
+              </div>
+              <ToastContainer />
+          </div>
+      </div> : <Spinner />
         }
-    </>
-  )
+    </section>
+    )
 }
 
 export default DetailPage

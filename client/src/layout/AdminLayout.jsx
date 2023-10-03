@@ -1,7 +1,7 @@
 import React from 'react'
 import AdminIndex from '../pages/Admin/AdminIndex'
 import AppSidebar from '../pages/Admin/AppSidebar'
-import '../assets/css/admin.css'
+import '../pages/Admin/admin.css'
 
 const AdminLayout = (props) => {
   return (

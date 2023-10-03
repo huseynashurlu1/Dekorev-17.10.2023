@@ -3,54 +3,39 @@ body::-webkit-scrollbar{
 }
 
 body::-webkit-scrollbar-thumb{
-    background-color: #ffb6b6;
-}
-
-.modal-box {
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    background-color: #000000b8;
-    width: 100%;
-    z-index: 111;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.modal-main{
-    background-color: #fff;
-    width: 30%;
-    padding: 20px;
-    position: absolute;
-    top: 20%;
-    z-index: 11111;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 5px;
+    background-color: #e6a247;
 }
 
 
-#main{
-    display: table;
-    width: 100%;
-    height: 100vh;
+#About {
+    margin: 2rem 0 0;
+  }
+  #About img {
+    width: 50%;
+  }
+  #About h3 {
+    font-size: 21px;
+    font-family: Bold;
+  }
+  #About p {
+    font-family: Regular;
+    font-size: 13px;
+  }
+  
+  #Contact .box {
+    margin-top: 20px;
     text-align: center;
-}
-
-.fof{
-	  display: table-cell;
-	  vertical-align: middle;
-}
-
-.fof h1{
-	  font-size: 50px;
-	  display: inline-block;
-	  padding-right: 12px;
-	  animation: type .5s alternate infinite;
-}
-
-@keyframes type{
-	  from{box-shadow: inset -3px 0px 0px #888;}
-	  to{box-shadow: inset -3px 0px 0px transparent;}
-}
+    border: 1px solid #e6a147b8;
+    padding: 20px 0;
+    border-radius: 5px;
+  }
+  #Contact .box a, #Contact .box span {
+    display: block;
+    margin-top: 10px;
+    color: #3f3f3f; 
+    font-family: Regular;
+  }
+  #Contact .box svg {
+    font-size: 50px;
+    color: #e6a247;
+  }

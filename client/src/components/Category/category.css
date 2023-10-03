@@ -1,30 +1,22 @@
-.category-list {
-    border: 1px solid #e7e7e7;
-    border-radius: 5px;
-    padding: 0 0 0 10px;
+.category-list{
+    padding: 15px 0;
+    border-top: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
 }
 
-.category-list ul{
-    height: 350px;
-    overflow-y: scroll;
+.category-list ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.category-list ul::-webkit-scrollbar{
-    width: 4px;
+.category-list li img{
+    filter: invert(1);
+    width: 25px;
 }
-
-.category-list ul::-webkit-scrollbar-thumb{
-    background-color: #ffb6b6;
-}
-
-.category-list li{
-    padding: 10px 0 10px 10px;
-    border-bottom: 1px solid #e7e7e7;
-}
-
-.category-list li a{
-    color: #333;
+.category-list li a {
     font-family: Regular;
+    color: #5d5d5d;
+    margin-left: 5px;
     font-size: 14px;
 }
-

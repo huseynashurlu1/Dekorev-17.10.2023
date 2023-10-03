@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import apiUrl from '../../utils/api'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -14,7 +15,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://207.154.192.155:5000/api/user/login', data);
+      const response = await axios.post(apiUrl.userApi.loginUser, data);
       const { token } = response.data; 
       setToken(token); 
       localStorage.setItem('token', token); 

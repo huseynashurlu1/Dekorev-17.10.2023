@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState }  from 'react'
 import Header from '../components/Header/Navbar'
 import Footer from '../components/Footer/Footer'
 import { IntlProvider } from "react-intl";
 import az from "../languages/az.json";
 import en from "../languages/en.json";
 import ru from "../languages/ru.json";
-import { useState } from 'react';
+import Category from '../components/Category/Category'
 
 
 const messages = {
@@ -21,18 +21,16 @@ const Layout = (props) => {
     setLocale(e);
   }
 
-
   return (
     <div className="layout">
-
-    <IntlProvider locale={locale} messages={messages[locale]}>
-      <Header  value={locale} onChange={handleLocaleChange}/>
-         <main className="content">
-            {props.children}
-        </main>
-        <Footer />
-    </IntlProvider>
-        
+        <IntlProvider locale={locale} messages={messages[locale]}>
+        <Header  value={locale} onChange={handleLocaleChange}/>
+        <Category />
+          <main className="content">
+              {props.children}
+          </main>
+          <Footer />
+      </IntlProvider>
     </div>
   )
 }

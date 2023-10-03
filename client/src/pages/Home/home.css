@@ -1,0 +1,40 @@
+#Slider{
+    margin-top: 2rem;
+}
+
+#Slider .sl-box {
+    height: 190px;
+    margin-bottom: 20px;
+}
+
+#Slider img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+    filter: drop-shadow(1px 0px 2px #bbbbbb);
+}
+
+#Slider .slide-box {
+    height: 400px;
+}
+
+
+/* VIP Section */
+#VIP {
+    margin-top: 2rem;
+}
+.vip-top {
+    margin-bottom: 20px;
+}
+.vip-top h3{
+    font-weight: Regular;
+    font-size: 20px;
+    color: #5d5d5d;
+}
+.vip-top a{
+    font-weight: Regular;
+    font-size: 14px;
+    color: #5d5d5d;
+}
+/* VIP Section */

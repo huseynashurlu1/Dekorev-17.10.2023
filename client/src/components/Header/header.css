@@ -1,89 +1,87 @@
-header .top{
-    padding: 3px 0;
-    background-color: #f7f7f7;
+.header-top {
+    background-color: #ededed;
+}
+.header-top a{
+    font-family: Regular;
+    font-size: 14px;
+    color: #5d5d5d;
+    margin-right: 10px;
 }
 
-header .top p{
-    color: #333;
+.header-top .lang button{
+    font-size: 14px;
+    font-family: Regular;
+    background-color: transparent;
+    border: none;
+    color: #5d5d5d;
+}
+
+.lang a{
     font-size: 14px;
     font-family: Regular;
 }
 
-.top button {
-    font-size: 14px;
-    font-family: Regular;
+.hb-all{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.mid{
-    padding: 10px 0;
-    border-bottom: 1px solid #e7e7e7;
-    margin-bottom: 20px;
+.header-bottom{
+    padding: 15px 0;
 }
 
-.logo a{
-    /* color: #097969; */
-    color: #ffb6b6;
-    font-family: Bold;
+.logo a {
     font-size: 40px;
+    font-family: Bold;
+    color: #e6a247;
 }
 
-.search {
-    justify-content: flex-end;
+.hb-all .logo{
+    width: 20%;
 }
 
-.search input{
-    width: 80%;
-    border: 2px solid #e7e7e7;
-    border-right: none;
-    padding-left: 10px;
-    font-size: 14px;
+.hb-all .search {
+    width: 40%;
+}
+
+.hb-all .search form{
+    display: flex;
+    border-radius: 4px;
+    align-items: center;
+    border: 1px solid #f76d11bd;
+    justify-content: space-between;
+    padding: 7px 15px;
+}
+
+.search form input, button {
+    border: none;
+    background-color: transparent;
     font-family: Regular;
 }
 
-.search button{
-    height: 45px;
-    border: 1px solid #ffb6b6;
-    background-color: #ffb6b6;
-    color: #fff;
-    width: 45px;
+.search form svg{
+    font-size: 20px;
 }
 
-.basket {
-    text-align: right;
+.search form input {
+    width: 90%;
 }
 
-.mid .basket svg{
-    font-size: 30px;
-    color: #ffb6b6;
+.basket-login ul{
+    display: flex; 
+    align-items: center;
 }
 
-
-.basket a{
-    position: relative;
+.basket-login ul a{
+    font-size: 14px;
+    font-family: Regular;
+    color: #5d5d5d;
+    margin-left: 5px;
 }
 
-.basket a span{
-    position: absolute;
-    top: -18px;
-    right: -18px;
-    color: #fff;
-    background-color: #ffb6b6;
-    padding: 3px 10px;
-    font-size: 12px;
-    font-family: Bold;
-    border-radius: 50%;
-}
-
-@media (max-width:576px) {
-    .logo {
-        text-align: center !important;
-    }
-    .search {
-        justify-content: center;
-        margin: 10px 0;
-    }
-    .basket {
-        text-align: center;
-        margin-top: 15px;
-    }
+.basket-login ul li{
+    margin-left: 28px;
+    display: flex; 
+    align-items: center;
 }

@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import apiUrl from '../../../utils/api';
 
 
 const CreateBrand = () => {
@@ -15,7 +15,7 @@ const CreateBrand = () => {
     const handleSubmit = async () => {
         console.log(item);
         try {
-            const response = await axios.post('http://207.154.192.155:5000/api/brand/add', item)
+            const response = await axios.post(`${apiUrl.brandApi.addBrand}`, item)
             toast.success('Brend əlavə olundu', {
                             position: "bottom-right",
                             autoClose: 2000,
