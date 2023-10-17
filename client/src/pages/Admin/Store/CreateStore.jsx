@@ -19,7 +19,7 @@ const CreateStore = () => {
 
   useEffect(() => {
     const getUsers = async () => {
-      await axios.get(`${apiUrl.userApi.userURL}/all-users`)
+      await axios.get(`${apiUrl.authApi.authURL}/all-users`)
       .then(res => setUsers(res.data))
       .catch(err => console.log(err))
     }

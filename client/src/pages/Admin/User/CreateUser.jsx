@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import apiUrl from '../../../utils/api';
@@ -16,7 +16,7 @@ const CreateStore = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${apiUrl.userApi.userURL}/register`, user);
+      await axios.post(`${apiUrl.authApi.authURL}/register`, user);
 
       alert('İstifadəçi əlavə edildi');
     } catch (error) {

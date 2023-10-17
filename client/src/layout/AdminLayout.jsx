@@ -5,12 +5,12 @@ import '../pages/Admin/admin.css'
 
 const AdminLayout = (props) => {
   return (
-    <div>
-        <div className="d-flex">
-            <div className="col-lg-3">
+    <div className='admin-layout'> 
+        <div className="d-flex justify-content-between">
+            <div className="left">
                 <AppSidebar />
             </div>
-            <div className="col-lg-9">
+            <div className="admin-main right">
                {props.children}
             </div>
         </div>

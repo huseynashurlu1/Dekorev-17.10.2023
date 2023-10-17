@@ -22,7 +22,7 @@
 
 /* VIP Section */
 #VIP {
-    margin-top: 2rem;
+    margin-top: 5rem;
 }
 .vip-top {
     margin-bottom: 20px;
@@ -37,4 +37,32 @@
     font-size: 14px;
     color: #5d5d5d;
 }
+
+.brand-box {
+    width: 16%;
+}
+
+.brand-box img{
+    width: 100%;
+    transition: .5s;
+}
+
+.brand-box:hover img{
+    filter: grayscale(1);
+}
 /* VIP Section */
+
+
+@media screen and (max-width:576px) {
+    .sl-box {
+        display: none;
+    }
+    .vip-items-content{
+        flex-wrap: wrap;
+    }
+    
+    .brand-box {
+        width: 36% !important;
+    }
+    
+}

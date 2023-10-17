@@ -1,0 +1,17 @@
+#Contact .box {
+    margin-top: 20px;
+    text-align: center;
+    border: 1px solid #e6a147b8;
+    padding: 20px 0;
+    border-radius: 5px;
+  }
+  #Contact .box a, #Contact .box span {
+    display: block;
+    margin-top: 10px;
+    color: #3f3f3f; 
+    font-family: Regular;
+  }
+  #Contact .box svg {
+    font-size: 50px;
+    color: #e6a247;
+  }

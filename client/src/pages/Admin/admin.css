@@ -1,17 +1,31 @@
+.admin-layout .left{
+    width: 20%;
+}
+
+.admin-layout .right {
+    width: 80%;
+    background-color: #181924;
+}
 .appSidebar{ 
     padding: 20px 10px;
     height: 100vh;
-    background-color: #3C4B64;
+    background-color: #2A2B36;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.086) 0px 5px 10px;
+}
+
+.appsidebar-content {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 15%;
+    width: 80%;
 }
 
 .accordion{
     margin-bottom: 20px;
 }
 
-.accordion button{
-    background: #536686;
-    color: #fff;
-}
 
 .accordion a{
     display: block;
@@ -25,6 +39,9 @@ form label,input, select{
     font-family: Regular;
 }
 
+label{
+    color: #fff;
+}
 
 .admin-pr-top input{
     border: 1px solid #c0bebe;
@@ -35,67 +52,70 @@ form label,input, select{
     font-size: 14px;
 }
 
-.appSidebar button{
-    border: 1px solid #c0bebe;
-    background: #536686;
-    color: #fff;
-    width: 100%;
-    border-radius: 7px;
-    padding: 10px 0;
-    font-family: 'Regular';
-    font-size: 14px;
-}
 
-.st-box {
-    padding: 15px;
-    text-align: center;
-    border-radius: 10px;
-}
-
-.st-box:nth-of-type(1) {
-    background-color: #3C4B64;
-}
-
-.st-box:nth-of-type(2) {
-    background-color: #2A86D4;
-}
-
-.st-box:nth-child(3) {
-    background-color: #F79C0D;
-}
-
-.st-box:nth-child(4) {
-    background-color: #DB3C3C;
-}
-
-.st-box h4{
-    color: #fff;
-    font-family: Regular;
-    border-bottom: 1px solid #e7e7e744;
-    padding-bottom: 9px;
-}
-
-.st-box p{
-    font-family: Bold;
-    color: #fff;
-    padding-top: 9px;
-    font-size: 23px;
-}
 
 .main-page-link {
-    border: 1px solid #c0bebe;
-    background: #536686;
     color: #fff;
     width: 100%;
-    display: inline-block;
+    display: flex;
+    align-items: center;
     margin-bottom: 20px;
     border-radius: 7px;
-    padding: 10px 0;
+    padding: 10px 0 10px 10px;
     font-family: 'Regular';
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.main-page-link svg{
+    margin-right: 15px;
 }
 
 table tr, table {
     text-align: center;
     font-size: 13px;
+}
+
+.admin-main {
+    background-color: #F5F8FE;
+}
+
+.active {
+    background-color: #2A86D4;
+    color: #fff;
+}
+
+.appsidebar-content button{
+    text-align: left;
+}
+
+.statistics-items {
+    margin-top: 3rem;
+}
+
+.statistics-items .st-item{
+    border-radius: 5px;
+    padding: 20px;
+    height: 130px;
+    color: #fff;
+    box-shadow: rgba(115, 82, 199, 0.176) 0px 0.5rem 1.25rem;
+}
+
+
+.st-item h3{
+    font-family: Bold;
+    font-size: 30px;
+}
+
+.st-item p{
+    font-family: Regular;
+    font-size: 18px;
+    margin-top: 6px;
+}
+
+.branch-select {
+    margin: 15px 0;
+    border: 1px solid #fff;
+    padding: 5px;
+    border-radius: 4px;
 }

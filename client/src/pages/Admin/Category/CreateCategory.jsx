@@ -38,7 +38,7 @@ const CreateCategory = () => {
     
   return (
     <div className="container">
-        <h3 style={{fontFamily: "Regular", padding: "20px 0"}}>Yeni kateqoriya</h3>
+        <h3 style={{fontFamily: "Regular", padding: "20px 0",color: '#fff'}}>Yeni kateqoriya</h3>
         <div className='col-lg-6 mx-auto'>
         <div className="add-box">
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

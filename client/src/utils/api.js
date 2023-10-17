@@ -11,11 +11,17 @@ const apiUrl = {
     storeApi: {
         storeURL: 'http://localhost:5000/api/store',
     },
-    userApi: {
-        userURL: 'http://localhost:5000/api/user',
+    branchApi: {
+        branchURL: 'http://localhost:5000/api/branch',
+    },
+    authApi: {
+        authURL: 'http://localhost:5000/api/user',
     },
     statusApi: {
         statusURL: 'http://localhost:5000/api/user',
+    },
+    colorApi: {
+        colorURL: 'http://localhost:5000/api/color',
     },
   };
   

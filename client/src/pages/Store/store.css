@@ -60,10 +60,15 @@
 }
 
 .store-info a{
-    display: inline-block;
+    display: flex;
+    align-items: center;
     color: #5d5d5d;
     font-family: 'Regular';
     margin: 9px 0;
+}
+
+.store-info svg{
+  margin-right: 6px;
 }
 
 #Store-details {
@@ -72,7 +77,6 @@
 
 #Store-details .sd-info {
     padding-bottom: 15px;
-    border-bottom: 1px solid rgba(51, 51, 51, 0.269);
   }
   #Store-details .sd-info h2 {
     font-family: Bold;
@@ -98,6 +102,8 @@
   }
   #Store-details .sd-info .sd-right .store-icons {
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
   }
 
   .sd-info .sd-right .store-icons svg{
@@ -184,6 +190,52 @@
     padding-left: 5px;
   }
 
+
+.branch-item {
+  border: 1px solid #c2c2c291;
+  border-radius: 5px;
+  padding: 20px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.branch-item h4{
+  font-family: Bold;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.branch-item li{
+  display: flex;
+  align-items: center;
+}
+
+
+.branch-item ul li span {
+    font-family: 'Regular';
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.branch-item svg{
+  color: #f78c44;
+}
+
+.branch-item ul li a {
+  font-family: 'Regular';
+  font-size: 14px;
+  margin-left: 5px;
+  color: #333;
+}
+
+.react-tabs__tab--selected {
+  background: #e6a247 !important;
+  border-color: #e6a247 !important;
+  color: #fff !important;
+  border-radius: 5px 5px 0 0;
+}
 
 @media screen and (max-width:576px) {
     .sd-info {

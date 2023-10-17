@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import apiUrl from '../utils/api'
-import Spinner from '../components/Spinner'
+import apiUrl from '../../utils/api'
+import Spinner from '../../components/Spinner'
+import './about.css'
 
 const About = () => {
   const [data, setData] = useState()

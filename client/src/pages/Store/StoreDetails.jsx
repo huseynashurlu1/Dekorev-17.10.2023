@@ -9,6 +9,9 @@ import { BsEye } from 'react-icons/bs'
 import ProductItem from '../../components/Product/ProductItem'
 import AlertBox from '../../components/AlertBox'
 
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+
 const StoreDetails = () => {
     const { id } = useParams()
     const [store, setStore] = useState()
@@ -32,7 +35,7 @@ const StoreDetails = () => {
        {
         store ?  <div className="container">
         <div className="sd-info d-flex justify-content-between align-items-center">
-            <div className="col-lg-5 col-12">
+            <div className="col-lg-5 col-7">
                 <div className="sd-left">
                     <img src={`http://localhost:5000/uploads/store/${store.image}`} alt="" />
                 </div>
@@ -56,18 +59,53 @@ const StoreDetails = () => {
                 </div>
             </div>
         </div>
-       <div className="store-products">
-           <h3 className="mb-3">MAĞAZANIN MƏHSULLARI</h3>
-           <div className="row">
-            {
-                store.products.length > 0 ? store.products.map(item => {
-                    return(
-                        <ProductItem data={item}/>
-                    )
-                }) : <AlertBox text='Bu mağazanın məhsulu yoxdur'/>
-            }
-           </div>
-       </div>
+        <Tabs>
+            <TabList>
+                <Tab>Mağazanın məhsulları</Tab>
+                <Tab>Filiallar</Tab>
+            </TabList>
+
+            <TabPanel>
+            <div className="store-products">
+                <div className="row gy-4">
+                    {
+                        store.products.length > 0 ? store.products.map(item => {
+                            return(
+                                <ProductItem data={item}/>
+                            )
+                        }) : <AlertBox text='Bu mağazanın məhsulu yoxdur'/>
+                    }
+                </div>
+            </div>
+            </TabPanel>
+            <TabPanel>
+                <div className="row mt-4 gy-4">
+                    {
+                        store.branches.length > 0 ? store.branches.map(item => {
+                            return(
+                                <div className="col-lg-4">
+                                    <div className="branch-item">
+                                        <h4>{item.name}</h4>
+                                        <ul>
+                                            <li>
+                                                <CiLocationOn />
+                                                <span>{item.address}</span>
+                                            </li>
+                                            <li>
+                                                <CiPhone />
+                                                <a href={`tel:${item.phone}`}>{item.phone}</a>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            )
+                        }) : <AlertBox text='Bu mağazanın filialı yoxdur'/>
+                    }
+                </div>
+            </TabPanel>
+        </Tabs>
+       
     </div> : <Spinner />
        }
     </section>

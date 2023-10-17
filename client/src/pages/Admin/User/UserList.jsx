@@ -13,20 +13,41 @@ const UserList = () => {
 
     useEffect(() => {
       const getUsers = async () => {
-        await axios.get(`${apiUrl.userApi.userURL}/all-users`)
+        await axios.get(`${apiUrl.authApi.authURL}/all-users`)
         .then(res => setUsers(res.data))
         .catch(err => console.log(err))
       }
   
       getUsers()
     }, [])
+
+    
+    const deleteHandler = async (id) => {
+        try {
+          const response = await axios.delete(`${apiUrl.authApi.authURL}/${id}`)
+          setUsers(prevData => prevData.filter(item => item._id !== id));
+          toast.error('İstifadəçi silindi', {
+              position: "bottom-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+          });
+      } catch (error) {
+          console.log(error)
+      } 
+    }
+
   return (
     <div className='container mt-3'>
         <Link to='/manage/users/create' className='btn btn-primary w-100'>Yeni İstifadəçi yarat</Link>
         <div className="admin-pr-top d-flex justify-content-between align-items-center">
-            <h3 style={{fontFamily: "Regular", padding: "20px 0"}}>Bütün istifadəçilər</h3>
+            <h3 style={{fontFamily: "Regular", padding: "20px 0",color:"#fff"}}>Bütün istifadəçilər</h3>
         </div>
-        <table className='table table-bordered'>
+        <table className='table table-bordered table-dark'>
             <thead>
                 <tr>
                 <th>Adı</th>
@@ -45,7 +66,7 @@ const UserList = () => {
                                             <td>{user.role}</td>
                                             <td className='d-flex justify-content-center'>
                                                 <Link to={`/admin/product/${user._id}`} className='btn btn-warning me-1'><AiOutlineEdit /></Link>
-                                                <button className='btn btn-danger ms-1'><BsTrash3 /></button>
+                                                <button onClick={() => deleteHandler(user._id)} className='btn btn-danger ms-1'><BsTrash3 /></button>
                                             </td>
                             </tr>
                         )

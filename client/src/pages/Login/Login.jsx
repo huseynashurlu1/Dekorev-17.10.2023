@@ -13,8 +13,12 @@ const Login = () => {
     })
 
     const handleLogin = async () => {
+       if(window.innerWidth <=576) {
+        alert('Telefon ilə daxil ola bilməzsiniz')
+       }
+       else{
         try {
-          const response = await axios.post(`${apiUrl.userApi.userURL}/login`, data);
+          const response = await axios.post(`${apiUrl.authApi.authURL}/login`, data);
           const { token } = response.data; 
           setToken(token); 
           localStorage.setItem('token', token); 
@@ -22,6 +26,7 @@ const Login = () => {
         } catch (error) {
           console.error('Giriş zamanı səhv baş verdi:', error);
         }
+       }
       }
 
   return (

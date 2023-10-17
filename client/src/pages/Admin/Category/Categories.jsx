@@ -41,14 +41,14 @@ const Categories = () => {
       } catch (error) {
           console.log(error)
       }
-      
     }
+    
   return (
     <div className='container'>
         <Link to='/manage/category/add' className='btn btn-primary w-100 mt-4'>Yeni Kateqoriya yarat</Link>
-        <h3 style={{fontFamily: "Regular", padding: "20px 0"}}>Bütün kateqoriyalar</h3>
+        <h3 style={{fontFamily: "Regular", padding: "20px 0", color: '#fff'}}>Bütün kateqoriyalar</h3>
         <div className="col-lg-5">
-        <table className='table table-bordered'>
+        <table className='table table-bordered table-dark'>
             <thead>
                 <tr>
                 <th>Adı</th>

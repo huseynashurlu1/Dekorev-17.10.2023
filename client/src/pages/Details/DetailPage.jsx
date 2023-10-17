@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
-import '../assets/css/details.css'
-import apiUrl from '../utils/api'
-import Spinner from '../components/Spinner'
+import { Link, useParams } from 'react-router-dom'
+import './details.css'
+import apiUrl from '../../utils/api'
+import Spinner from '../../components/Spinner'
 import { useDispatch } from 'react-redux'
-import { addItem } from '../store/cartSlice'
+import { addItem } from '../../store/cartSlice'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FormattedMessage } from 'react-intl'
+import ProductSlider from '../../components/Slider/ProductSlider'
 
 
 const DetailPage = () => {
   const { id } = useParams()
   const [item, setItem] = useState()
+  const [btn, setBtn] = useState(false)
   const dispatch = useDispatch();
 
+  
 
 
   useEffect(() => {
@@ -28,6 +32,13 @@ const DetailPage = () => {
         }
     }
       getItem()
+
+      const basket = JSON.parse(localStorage.getItem('cart'))
+
+        const exist = basket.find(item => item._id === id)
+        if(exist !== undefined) {
+            setBtn(true)
+        }
   }, [])
 
   const handleAddToCart = () => {
@@ -42,6 +53,7 @@ const DetailPage = () => {
         progress: undefined,
         theme: "light",
         });
+    setBtn(true)
   };
 
   return (
@@ -50,19 +62,19 @@ const DetailPage = () => {
           item ? <div className="container">
           <div className="pr-box">
               <div className="row">
-                  <div className="col-lg-3">
+                  <div className="col-lg-4">
                       <div className="pr-img">
-                          <img id="prod_img" src={`http://localhost:5000/uploads/product/${item.images[0].url}`} alt="" />
+                        <ProductSlider images={item.images}/>
                       </div>
                   </div>
-                  <div className="col-lg-6">
+                  <div className="col-lg-5">
                       <div className="pr-details">
                           <span className="pr-cat">{item.categoryId.name}</span>
                           <h4 id="prod_name" className="pr-name">{item.name}</h4>
                           <hr />
-                          <p className="shipping">Çatdırılma: <span>{item.isShipping ? 'Var' : 'Yoxdur'}</span></p>
-                          <p className="new-old">Yeni: <span>{item.isNew ? 'Bəli' : 'Xeyr'}</span></p>
-                          <p className="city">Şəhər: <span>{item.city}</span></p>
+                          <p className="shipping"><FormattedMessage id='Çatdırılma' defaultMessage='Çatdırılma'/>: <span>{item.isShipping ? <FormattedMessage id='Mövcuddur' defaultMessage='Mövcuddur'/> :  <FormattedMessage id='Xeyr' defaultMessage='Yoxdur'/> }</span></p>
+                          <p className="new-old"><FormattedMessage id='Yeni' defaultMessage='Yeni'/>: <span>{item.isNew ? <FormattedMessage id='Bəli' defaultMessage='Bəli'/> : <FormattedMessage id='Xeyr' defaultMessage='Xeyr'/>}</span></p>
+                          <p className="city"><FormattedMessage id='Şəhər' defaultMessage='Şəhər'/>: <span>{item.city}</span></p>
 
                           <form action="">
                               <button type="submit" style={{backgroundColor: "#04913a"}}>
@@ -80,27 +92,35 @@ const DetailPage = () => {
                   <div className="col-lg-3">
                       <div className="cust-details">
                           <div className="price-sec">
-                              <span className="pr-price"><span id="prod_price">{item.price}</span> <span>₼</span></span>
+                              {
+                                item.isDiscounted ? <span className="pr-price"><del>{item.price} ₼</del> <span id="prod_price">{item.discountedPrice} <span>₼</span></span></span> :
+                                <span className="pr-price"><span id="prod_price">{item.price} <span>₼</span></span></span>
+                              }
                           </div>
                           <ul>
                               <li>
-                                  <span>Elanın nömrəsi: <span id="prod_id">481290</span></span>
+                                  <span><FormattedMessage id='Elanın nömrəsi' defaultMessage='Elanın nömrəsi'/>: <span id="prod_id">481290</span></span>
                               </li>
                               <li>
-                                  <span>Yüklənmə tarixi: <span>{item.createDate}</span></span>
+                                  <span><FormattedMessage id='Yüklənmə tarixi' defaultMessage='Yüklənmə tarixi'/>: <span>{item.createDate}</span></span>
                               </li>
                               <li>
-                                  <span>Baxış sayı: <span>{item.viewCount}</span></span>
+                                  <span><FormattedMessage id='Baxış sayı' defaultMessage='Baxış sayı'/>: <span>{item.viewCount}</span></span>
                               </li>
                               <li>
-                                  <span>Əlaqə: <span style={{color: "#333e48"}}>{item.phone}</span></span>
+                                  <span><FormattedMessage id='Əlaqə' defaultMessage='Əlaqə'/>: <span style={{color: "#333e48"}}>{item.phone}</span></span>
                               </li>
                               <li>
-                                  <span>Mağaza: <a href="store-details.html" style={{color: "#333e48",fontWeight: "bold"}}>Collezine Italiano</a></span>
+                                  <span><FormattedMessage id='Mağaza' defaultMessage='Mağaza'/>: <Link to={`/store/details/${item.storeId._id}`} style={{color: "#333e48",fontWeight: "bold"}}>{item.storeId.name}</Link></span>
                               </li>
                           </ul>
                           <div className="shop-cart-btn">
-                              <button onClick={handleAddToCart} className="add-to-cart-button">Səbətə at</button>
+                            {
+                                btn ? <button disabled className="add-to-cart-button bg-warning text-white">Səbətdədir</button> :
+                                <button onClick={handleAddToCart} className="add-to-cart-button"><FormattedMessage id='Səbətə at' defaultMessage='Səbətə at'/></button>
+                                
+                            }
+                              
                           </div>
                       </div>
                   </div>

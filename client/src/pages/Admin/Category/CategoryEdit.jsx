@@ -46,9 +46,9 @@ const CategoryEdit = () => {
          <button onClick={handleSubmit} className='btn btn-success w-100 mt-4'>Əlavə et</button>
     </div>
       
-</div>
-<ToastContainer />
-</div>
+  </div>
+  <ToastContainer />
+  </div>
   )
 }
 

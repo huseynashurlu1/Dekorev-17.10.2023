@@ -6,6 +6,7 @@ import az from "../languages/az.json";
 import en from "../languages/en.json";
 import ru from "../languages/ru.json";
 import Category from '../components/Category/Category'
+import BottomNavigation from '../components/Navigation/BottomNavigation';
 
 
 const messages = {
@@ -30,6 +31,7 @@ const Layout = (props) => {
               {props.children}
           </main>
           <Footer />
+          <BottomNavigation />
       </IntlProvider>
     </div>
   )

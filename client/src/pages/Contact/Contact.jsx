@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Spinner from '../components/Spinner'
+import Spinner from '../../components/Spinner'
 import axios from 'axios'
-import apiUrl from '../utils/api'
+import apiUrl from '../../utils/api'
 import {AiOutlinePhone, AiOutlineMail, AiOutlineEnvironment} from 'react-icons/ai'
+import './contact.css'
 
 const Contact = () => {
     const [data, setData] = useState()

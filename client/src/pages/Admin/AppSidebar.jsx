@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import { PiDotDuotone } from 'react-icons/pi'
-import { BiLogOutCircle } from 'react-icons/bi'
+import { NavLink, useNavigate } from 'react-router-dom';
+import { AiOutlineSetting, AiOutlineLogout, AiOutlineUser, AiOutlineAppstore } from 'react-icons/ai'
+import { BiStore } from 'react-icons/bi'
+import { CiCircleList } from 'react-icons/ci'
 import jwtDecode from 'jwt-decode';
 
 
@@ -23,16 +24,19 @@ const AppSidebar = () => {
   return (
     <div className='appSidebar'>
         <div className="container">
-        <Link className='main-page-link' to='/manage'><PiDotDuotone /> Ana Səhifə</Link>
-        <Link className='main-page-link' to='/manage/products'><PiDotDuotone /> Məhsullar</Link>
-        {userRole === 'superAdmin' && (
-                <>
-                    <Link className='main-page-link' to='/manage/categories'><PiDotDuotone /> Kateqoriyalar</Link>
-                    <Link className='main-page-link' to='/manage/stores'><PiDotDuotone /> Mağazalar</Link>
-                    <Link className='main-page-link' to='/manage/users'><PiDotDuotone /> İstifadəçilər</Link>
-                </>
-            )}
-        <button onClick={logoutHandler}><BiLogOutCircle /> Çıxış</button>
+        <div className="appsidebar-content">
+          <NavLink activeclassname="active" className='main-page-link' to='/manage'><AiOutlineSetting /> Ana Səhifə</NavLink>
+          <NavLink className='main-page-link' to='/manage/products'><CiCircleList /> Məhsullar</NavLink>
+          {userRole === 'superAdmin' && (
+                  <>
+                      <NavLink className='main-page-link' to='/manage/categories'><AiOutlineAppstore /> Kateqoriyalar</NavLink>
+                      <NavLink className='main-page-link' to='/manage/stores'><BiStore /> Mağazalar</NavLink>
+                      <NavLink className='main-page-link' to='/manage/branches'><BiStore /> Filiallar</NavLink>
+                      <NavLink className='main-page-link' to='/manage/users'><AiOutlineUser /> İstifadəçilər</NavLink>
+                  </>
+              )}
+          <button className='main-page-link' onClick={logoutHandler}><AiOutlineLogout /> Çıxış</button>
+        </div>
         </div>
     </div>
   )

@@ -6,7 +6,7 @@ import apiUrl from '../../utils/api'
 import ProductItem from '../../components/Product/ProductItem'
 
 const HomePage = () => {
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState()
 
     useEffect(() => {
         const getItems = async () => {
@@ -15,7 +15,7 @@ const HomePage = () => {
             .catch(err => console.log(err))
         }
         getItems()
-    })
+    }, [])
 
     if(!items) {
         return '...'
@@ -46,15 +46,38 @@ const HomePage = () => {
           <section id='VIP'>
             <div className="conti">
                 <div className="vip-top d-flex justify-content-between align-items-center">
+                    <h3>ƏN REYTINQLI MAĞAZALAR</h3>
+                    <Link>Hamısını göstər</Link>
+                </div>
+                <div className="vip-items">
+                    <div className="vip-items-content d-flex justify-content-between align-items-center">
+                        {
+                            items.storeImages.map(item => {
+                                return(
+                                    <div className="brand-box">
+                                        <Link to={`/store/details/${item._id}`}>
+                                            <img src={`http://localhost:5000/uploads/store/${item.image}`} alt="" />
+                                        </Link>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+            </div>
+          </section>
+          <section id='VIP'>
+            <div className="conti">
+                <div className="vip-top d-flex justify-content-between align-items-center">
                     <h3>VIP ELANLAR</h3>
                     <Link>Hamısını göstər</Link>
                 </div>
                 <div className="vip-items">
-                    <div className="row">
+                    <div className="row gy-4">
                         {
-                            items.filter(item => item.isVIP === true).map(item => {
+                            items.products.filter(item => item.isVIP === true).map(item => {
                                 return(
-                                    <ProductItem data={item}/>
+                                    <ProductItem key={item._id} data={item}/>
                                 )
                             })
                         }
@@ -69,11 +92,11 @@ const HomePage = () => {
                     <Link>Hamısını göstər</Link>
                 </div>
                 <div className="vip-items">
-                    <div className="row">
+                    <div className="row gy-4">
                         {
-                            items.filter(item => item.viewCount > 100).map(item => {
+                            items.products.filter(item => item.viewCount > 50).map(item => {
                                 return(
-                                    <ProductItem data={item}/>
+                                    <ProductItem key={item._id} data={item}/>
                                 )
                             })
                         }

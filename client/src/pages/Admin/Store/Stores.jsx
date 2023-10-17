@@ -14,7 +14,9 @@ const Stores = () => {
     useEffect(() => {
       const getItems = async () => {
         await axios.get(`${apiUrl.storeApi.storeURL}/all`)
-        .then(res => setItems(res.data))
+        .then(res => {
+            setItems(res.data)
+        })
         .catch(err => console.log(err))
       }
   
@@ -22,7 +24,7 @@ const Stores = () => {
     }, [])
   
     const DeleteHandler = async (id) => {
-      try {
+        try {
           const response = await axios.delete(`${apiUrl.storeApi.storeURL}/${id}`)
           setItems(prevData => prevData.filter(item => item._id !== id));
           toast.error('Mağaza silindi', {
@@ -44,10 +46,10 @@ const Stores = () => {
     <div className='container mt-3'>
     <Link to='/manage/stores/create' className='btn btn-primary w-100'>Yeni Mağaza yarat</Link>
     <div className="admin-pr-top d-flex justify-content-between align-items-center">
-        <h3 style={{fontFamily: "Regular", padding: "20px 0"}}>Bütün mağazalar</h3>
+        <h3 style={{fontFamily: "Regular", padding: "20px 0", color: "#fff"}}>Bütün mağazalar</h3>
         <input type="text" placeholder='mağaza adı' />
     </div>
-    <table className='table table-bordered'>
+    <table className='table table-bordered table-dark'>
         <thead>
             <tr>
             <th>Şəkli</th>
@@ -59,16 +61,15 @@ const Stores = () => {
         <tbody>
             {
                 items && items.map(item => {
-                    console.log(item);
                     return(
-                        <tr style={{verticalAlign: "baseline"}} key={item._id}>
+                        <tr style={{verticalAlign: "middle"}} key={item._id}>
                                         <td style={{width:"30%"}}>
                                             <img style={{width:"100%",objectFit: 'contain',height: '150px'}} src={`http://localhost:5000/uploads/store/${item.image}`} alt="" />
                                         </td>
                                         <td style={{width: "20%"}}>{item.name}</td>
                                         <td style={{width: "30%"}}>{item.address}</td>
-                                        <td className='d-flex justify-content-center'>
-                                            <Link to={`/admin/product/${item._id}`} className='btn btn-warning me-1'><AiOutlineEdit /></Link>
+                                        <td>
+                                            <Link to={`/manage/stores/${item._id}`} className='btn btn-warning me-1'><AiOutlineEdit /></Link>
                                             <button onClick={() => DeleteHandler(item._id)} className='btn btn-danger ms-1'><BsTrash3 /></button>
                                         </td>
                         </tr>

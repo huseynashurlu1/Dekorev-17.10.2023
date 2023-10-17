@@ -36,7 +36,7 @@
   #Product-details .pr-box .pr-img img {
     width: 100%;
     height: 300px;
-    object-fit: contain;
+    object-fit: cover;
   }
   #Product-details .pr-box .pr-details {
     font-family: Regular;
@@ -82,13 +82,16 @@
     border-bottom: 1px solid #c5c5c5;
   }
   #Product-details .pr-box .cust-details .price-sec .pr-price {
-    background-color: #e6a247;
-    color: #fff;
     font-size: 20px;
     display: inline-block;
-    padding: 3px 20px;
     font-weight: bold;
     margin-bottom: 15px;
+  }
+
+  #prod_price {
+    background-color: #e6a247;
+    color: #fff;
+    padding: 3px 20px;
     border-radius: 5px;
   }
   #Product-details .pr-box .cust-details ul {

@@ -16,6 +16,11 @@
     vertical-align: middle;
     text-align: center;
   }
+
+  #Cart table tbody tr a{
+    color: #000;
+  }
+
   #Cart table tbody td {
     font-size: 13px;
   }

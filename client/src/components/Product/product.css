@@ -1,6 +1,10 @@
 .item-box {
     border: 1px solid rgba(247, 109, 17, 0.337254902);
     border-radius: 5px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .item-box:hover .box-top img {
     transform: scale(1.05);
@@ -8,7 +12,6 @@
   .item-box .box-top {
     overflow: hidden;
     position: relative;
-    height: 250px;
   }
   .item-box .box-top img {
     transition: transform 0.4s;

@@ -2,7 +2,7 @@ import React from 'react'
 import './cart.css'
 import { BsTrash3 } from 'react-icons/bs'
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { removeItem } from '../../store/cartSlice';
 import { ToastContainer, toast } from 'react-toastify';
@@ -81,7 +81,7 @@ const CartPage = () => {
         products.forEach(x => {
             sum += x.price
         })
-        return sum
+        return sum.toFixed(2)
     }
 
   return (
@@ -98,7 +98,7 @@ const CartPage = () => {
                     </div>
                     <div className="cart-main">
                             <div style={{overflowX:"auto"}} className="cart-header-left">
-                                <table className="table table-striped table-bordered">
+                                <table className="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th>*</th>
@@ -115,12 +115,14 @@ const CartPage = () => {
                                             products && products.map(item => {
                                                 count++
                                                 return(
-                                                    <tr>
+                                                    <tr key={item._id}>
                                                         <td>{count}</td>
                                                         <td>
                                                             <img src={`http://localhost:5000/uploads/product/${item.images[0].url}`} alt="" />
                                                         </td>
-                                                        <td>{item.name}</td>
+                                                        <td>
+                                                            <Link to={`/details/${item._id}`}>{item.name}</Link>
+                                                        </td>
                                                         <td>{item.price} ₼</td>
                                                         <td>{item.count}</td>
                                                         <td>{(item.price) * (item.count)} ₼</td>

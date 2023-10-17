@@ -73,6 +73,14 @@ var productSchema = new mongoose.Schema({
         ref: 'Store',
         required:true
     },
+    colorId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Color',
+        required:true
+    },
 });
+
+productSchema.index({ storeId: 1 });
+
 
 module.exports = mongoose.model('Product', productSchema);

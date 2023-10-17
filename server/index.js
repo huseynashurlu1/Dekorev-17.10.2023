@@ -8,6 +8,8 @@ const categoryRoute = require('./routes/category');
 const settingsRoute = require('./routes/settings');
 const statusRoute = require('./routes/status');
 const storeRoute = require('./routes/store');
+const branchRoute = require('./routes/branch');
+const colorRoute = require('./routes/color');
 const userRoute = require('./routes/user')
 
 const multer = require('multer');
@@ -66,6 +68,8 @@ app.use('/api/product', productUpload.array('images', 5), productRoute);
 app.use('/api/store', storeUpload.single('image'), storeRoute);
 app.use('/api/settings', settingsUpload.single('aboutImage'), settingsRoute);
 app.use('/api/status', statusRoute);
+app.use('/api/branch', branchRoute);
+app.use('/api/color', colorRoute);
 app.use('/api/user', userRoute);
 
 app.use('/uploads', express.static('uploads'));

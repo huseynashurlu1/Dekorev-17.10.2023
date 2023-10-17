@@ -8,6 +8,7 @@ import apiUrl from '../../../utils/api';
 const CreateProduct = () => {
   const [categories, setCategories] = useState([]);
   const [stores, setStores] = useState([]);
+  const [colors, setColors] = useState([]);
     const [item, setItem] = useState({
         name: '',
         description: '',
@@ -22,6 +23,7 @@ const CreateProduct = () => {
         city: '',
         categoryId: '',
         storeId: '',
+        colorId: ''
       });
 
       useEffect(() => {
@@ -34,9 +36,15 @@ const CreateProduct = () => {
           const response = await axios.get(`${apiUrl.storeApi.storeURL}/all`);
           setStores(response.data);
         }
+
+        async function getColors() {
+          const response = await axios.get(`${apiUrl.colorApi.colorURL}/all`);
+          setColors(response.data);
+        }
     
         getCategories();
         getStores();
+        getColors();
       }, []);
 
       const handleImageChange = (e) => {
@@ -65,6 +73,7 @@ const CreateProduct = () => {
           formData.append('city', item.city);
           formData.append('categoryId', item.categoryId);
           formData.append('storeId', item.storeId);
+          formData.append('colorId', item.colorId);
     
     
           await axios.post(`${apiUrl.productApi.productURL}/add`, formData, {
@@ -81,7 +90,7 @@ const CreateProduct = () => {
 
   return (
     <div className="container">
-        <h3 style={{fontFamily: "Regular", padding: "20px 0"}}>Yeni məhsul</h3>
+        <h3 style={{fontFamily: "Regular", padding: "20px 0", color: '#fff'}}>Yeni məhsul</h3>
         <div className='col-lg-6 mx-auto'>
         <Form onSubmit={handleSubmit} encType="multipart/form-data" >
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -102,7 +111,7 @@ const CreateProduct = () => {
             </Form.Group>
             <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Şəkli</Form.Label>
-                <Form.Control onChange={handleImageChange} type="file" />
+                <Form.Control onChange={handleImageChange} type="file"  multiple/>
             </Form.Group>
             <Form.Check inline label="Endirimli" name="isDiscounted" type="checkbox" checked={item.isDiscounted} onChange={(e) => setItem({ ...item, isDiscounted: e.target.checked })} />
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -134,6 +143,18 @@ const CreateProduct = () => {
                         <option>Mağaza</option>
                         {
                             stores && stores.map(item => {
+                                return(
+                                <option key={item._id} value={item._id}>{item.name}</option>
+                                )
+                            })
+                        }
+                </Form.Select>
+                <Form.Select value={item.colorId} name="colorId" className='mb-4' aria-label="Default select example" onChange={(e) => {
+                    setItem({ ...item, colorId: e.target.value })
+                    }}>
+                        <option>Rəng</option>
+                        {
+                            colors && colors.map(item => {
                                 return(
                                 <option key={item._id} value={item._id}>{item.name}</option>
                                 )

@@ -43,6 +43,7 @@
 
 .hb-all .search {
     width: 40%;
+    position: relative;
 }
 
 .hb-all .search form{
@@ -68,6 +69,36 @@
     width: 90%;
 }
 
+.search ul{
+    z-index: 1;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 1px 2px 1px #5d5d5d4f;
+    padding: 13px;
+    border-radius: 15px;
+}
+
+.search ul li{
+    display: flex;
+    align-items: center;
+}
+
+.search ul li img{
+    width: 6%;
+}
+
+.search ul li{
+    border-bottom: 1px solid #ededed;
+    padding: 4px 0;
+}
+
+.search ul li a{
+    color: #5d5d5d;
+    margin-left: 10px;
+    font-family: Regular;
+    font-size: 13px;
+}
+
 .basket-login ul{
     display: flex; 
     align-items: center;
@@ -78,10 +109,103 @@
     font-family: Regular;
     color: #5d5d5d;
     margin-left: 5px;
+    text-transform: uppercase;
 }
 
 .basket-login ul li{
     margin-left: 28px;
     display: flex; 
     align-items: center;
+}
+
+.item-count-link{
+    position: relative;
+}
+
+.item-count {
+    position: absolute;
+    background-color: #e6a247;
+    color: #fff;
+    border-radius: 50%;
+    padding: 0px 6px;
+    top: -14px;
+    left: -10px;
+    font-family: Regular;
+    font-size: 13px;
+}
+
+.mobile-header {
+    display: none;
+    padding: 14px 0;
+}
+
+.mobile-header a{
+    font-size: 22px;
+    font-family: Bold;
+    color: #e6a247;
+}
+
+.mobile-header svg{
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.sidenav {
+    background-color: #fff;
+    position: fixed;
+    width: 60%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    padding: 20px;
+}
+
+.sidenav .pages a{
+    display: block;
+    color: #333;
+    font-size: 14px;
+    font-family: Regular;
+    margin: 20px 0;
+}
+
+.sidenav .dropdown button{
+    border: 1px solid #333;
+    font-size: 14px;
+    font-family: 'Regular';
+}
+
+.sidenav .dropdown a{
+    font-size: 14px;
+    font-family: Regular;
+}
+
+@media screen and (max-width:576px) {
+    .store-link {
+        display: none;
+    }
+    .basket-login {
+        display: none;
+    }
+    .hb-all .logo{
+        display: none;
+    }
+    .hb-all .search {
+        width: 100% !important;
+        background-color: #e6a247;
+        border: none;
+    }
+    .hb-all .search input{
+        background-color: #fff;
+        width: 100%;
+        padding: 12px 0 12px 15px;
+        font-size: 13px;
+        font-family: 'Regular';
+        border-radius: 2px;
+    }
+    .header-top {
+        display: none;
+    }
+    .mobile-header {
+        display: block !important;
+    }
 }

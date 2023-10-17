@@ -4,7 +4,6 @@ import {  Link } from 'react-router-dom'
 
 
 const StoreItem = (props) => {
-  console.log(props);
     const {_id, image, name, description, phone} = props.data
   return (
     <div className="col-lg-6">
